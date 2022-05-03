@@ -55,10 +55,24 @@ export class AppComponent implements OnInit {
     });
   }
 
-  getSignature() {
+  joinMeeting(meetingNumber) {
+    this.meetingNumber = meetingNumber.replace(/ /g, "");
+    this.getSignature(0);
+  }
+  
+  hostMeeting(meetingNumber) {
+    this.meetingNumber = meetingNumber.replace(/ /g, "");
+    this.getSignature(1);
+  }
+    
+  leaveMeeting() {
+    this.client.leaveMeeting();
+  }
+  
+  getSignature(role) {
     this.httpClient.post(this.signatureEndpoint, {
 	    meetingNumber: this.meetingNumber,
-	    role: this.role
+	    role: role
     }).toPromise().then((data: any) => {
       if(data.signature) {
         console.log(data.signature)
