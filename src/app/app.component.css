@@ -1,6 +1,6 @@
+html, body {margin: 0; height: 100%; overflow: hidden}
+
 main {
-  width: 70%;
-  margin: auto;
   text-align: center;
 }
 
@@ -22,4 +22,23 @@ button {
 
 button:hover {
   background-color: #2681F2;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 1;
+  position: relative;
+}
+
+#meetingSDKElement {
+  top: 0 !important;
+  left: 0 !important;
+  right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%; /* width of speaker and ribbon view */
+  position: absolute;
 }

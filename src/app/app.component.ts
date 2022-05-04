@@ -33,12 +33,38 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     let meetingSDKElement = document.getElementById('meetingSDKElement');
+    let meetingSDKChatElement = document.getElementById('meetingSDKChatElement');
+
+    // ISSUE: resizing https://devforum.zoom.us/t/customize-embedded-zoom-with-component-view-in-2-2-0/64233/6?u=andy1
 
     this.client.init({
       debug: true,
       zoomAppRoot: meetingSDKElement,
       language: 'en-US',
       customize: {
+        video: {
+          popper: {
+            disableDraggable: true
+          },
+          isResizable: false,
+          viewSizes: {
+            default: {
+              width: 1280,
+              height: 720
+            },
+            ribbon: {
+              width: 316,
+              height: 720
+            }
+          }
+        },
+        chat: {
+          popper: {
+            disableDraggable: true,
+            anchorElement: meetingSDKChatElement,
+            placement: 'top'
+          }
+        },
         meetingInfo: ['topic', 'host', 'mn', 'pwd', 'telPwd', 'invite', 'participant', 'dc', 'enctype'],
         toolbar: {
           buttons: [
@@ -59,22 +85,22 @@ export class AppComponent implements OnInit {
     this.meetingNumber = meetingNumber.replace(/ /g, "");
     this.getSignature(0);
   }
-  
+
   hostMeeting(meetingNumber) {
     this.meetingNumber = meetingNumber.replace(/ /g, "");
     this.getSignature(1);
   }
-    
+
   leaveMeeting() {
     this.client.leaveMeeting();
   }
-  
+
   getSignature(role) {
     this.httpClient.post(this.signatureEndpoint, {
-	    meetingNumber: this.meetingNumber,
-	    role: role
+      meetingNumber: this.meetingNumber,
+      role: role
     }).toPromise().then((data: any) => {
-      if(data.signature) {
+      if (data.signature) {
         console.log(data.signature)
         this.startMeeting(data.signature)
       } else {
@@ -88,11 +114,11 @@ export class AppComponent implements OnInit {
   startMeeting(signature) {
 
     this.client.join({
-    	sdkKey: this.sdkKey,
-    	signature: signature,
-    	meetingNumber: this.meetingNumber,
-    	password: this.passWord,
-    	userName: this.userName,
+      sdkKey: this.sdkKey,
+      signature: signature,
+      meetingNumber: this.meetingNumber,
+      password: this.passWord,
+      userName: this.userName,
       userEmail: this.userEmail,
       tk: this.registrantToken
     })

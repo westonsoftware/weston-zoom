@@ -1,20 +1,15 @@
 <main>
   <h1>Zoom Meeting SDK Sample Angular</h1>
-
-<div>
-  <h3>Meeting ID</h3>
-  <input type="text" id="meeting" name="meeting" #meeting>
-  <br/>
-  <button (click)="hostMeeting(meeting.value)">Host Meeting</button>
-  <br/>
-  <button (click)="joinMeeting(meeting.value)">Join Meeting</button> 
-   <br/>
-  <button (click)="leaveMeeting()">Leave Meeting</button>
-</div>
-  
-  <!-- For Component View -->
-  <div id="meetingSDKElement">
-    <!-- Zoom Meeting SDK Component View Rendered Here -->
+  <div>
+    <h3>Meeting ID</h3>
+    <input type="text" id="meeting" name="meeting" #meeting />
+    <br />
+    <button (click)="hostMeeting(meeting.value)">Host Meeting</button>
+    <br />
+    <button (click)="joinMeeting(meeting.value)">Join Meeting</button>
+    <br />
+    <button (click)="leaveMeeting()">Leave Meeting</button>
   </div>
-
+  <div id="meetingSDKElement"></div>
+  <div id="meetingSDKChatElement"></div>
 </main>
