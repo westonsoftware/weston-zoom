@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
           popper: {
             disableDraggable: true
           },
-          isResizable: false,
+          isResizable: true,
           viewSizes: {
             default: {
               width: 1280,
