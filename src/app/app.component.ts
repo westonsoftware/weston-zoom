@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   role = 0
   userName = 'Angular'
   userEmail = ''
-  passWord = 'dr0BX1'
+  passWord = ''
   // pass in the registrant's token if your meeting or webinar requires registration. More info here:
   // Meetings: https://marketplace.zoom.us/docs/sdk/native-sdks/web/component-view/meetings#join-registered
   // Webinars: https://marketplace.zoom.us/docs/sdk/native-sdks/web/component-view/webinars#join-registered
@@ -81,12 +81,14 @@ export class AppComponent implements OnInit {
     });
   }
 
-  joinMeeting(meetingNumber) {
+  joinMeeting(meetingNumber, password) {
+    this.passWord = password;
     this.meetingNumber = meetingNumber.replace(/ /g, "");
     this.getSignature(0);
   }
 
-  hostMeeting(meetingNumber) {
+  hostMeeting(meetingNumber,password) {
+    this.passWord = password;
     this.meetingNumber = meetingNumber.replace(/ /g, "");
     this.getSignature(1);
   }

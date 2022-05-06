@@ -4,9 +4,12 @@
     <h3>Meeting ID</h3>
     <input type="text" id="meeting" name="meeting" #meeting />
     <br />
-    <button (click)="hostMeeting(meeting.value)">Host Meeting</button>
+    <h3>Password</h3>
+    <input type="text" id="password" name="password" #password />
     <br />
-    <button (click)="joinMeeting(meeting.value)">Join Meeting</button>
+    <button (click)="hostMeeting(meeting.value, password.value)">Host Meeting</button>
+    <br />
+    <button (click)="joinMeeting(meeting.value, password.value)">Join Meeting</button>
     <br />
     <button (click)="leaveMeeting()">Leave Meeting</button>
   </div>
